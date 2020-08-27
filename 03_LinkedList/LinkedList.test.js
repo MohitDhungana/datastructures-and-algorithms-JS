@@ -9,7 +9,7 @@ describe('#insertAtHead', () => {
     linkedList.insertAtHead(20);
 
     expect(linkedList.head.value).toBe(20);
-    expect(linkedList.head.next).toBe(oldHead);
+    expect(linkedList.head.nextNode).toBe(oldHead);
     expect(linkedList.length).toBe(2);
   });
 });
@@ -66,7 +66,7 @@ describe('#insertAtIndex', () => {
       const ll = LinkedList.fromValues(10, 20);
       ll.insertAtIndex(0, 100);
       expect(ll.head.value).toBe(100);
-      expect(ll.head.next.value).toBe(10);
+      expect(ll.head.nextNode.value).toBe(10);
       expect(ll.length).toBe(3);
     });
   });
@@ -78,7 +78,7 @@ describe('#insertAtIndex', () => {
       const node = ll.getByIndex(2);
 
       expect(node.value).toBe(100);
-      expect(node.next.value).toBe(30);
+      expect(node.nextNode.value).toBe(30);
       expect(ll.length).toBe(5);
     });
   });
@@ -114,7 +114,7 @@ describe('#removeAtIndex', () => {
       const ll = LinkedList.fromValues(10, 20, 30);
       ll.removeAtIndex(0);
       expect(ll.head.value).toBe(20);
-      expect(ll.head.next.value).toBe(30);
+      expect(ll.head.nextNode.value).toBe(30);
       expect(ll.length).toBe(2);
     });
   });
@@ -126,7 +126,7 @@ describe('#removeAtIndex', () => {
       const node = ll.getByIndex(1);
 
       expect(node.value).toBe(20);
-      expect(node.next.value).toBe(40);
+      expect(node.nextNode.value).toBe(40);
       expect(ll.length).toBe(3);
     });
   });

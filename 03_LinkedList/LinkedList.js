@@ -1,7 +1,7 @@
 class Node {
-  constructor(value, next) {
+  constructor(value, nextNode) {
     this.value = value;
-    this.next = next;
+    this.nextNode = nextNode;
   }
 }
 
@@ -20,49 +20,50 @@ class LinkedList {
   getByIndex(index) {
     if (index < 0 || index >= this.length) return null;
 
-    let current = this.head;
+    let currentNode = this.head;
     for (let i = 0; i < index; i++) {
-      current = current.next;
+      currentNode = currentNode.nextNode;
     }
-    return current;
+    return currentNode;
   }
 
   insertAtIndex(index, value) {
     if (index === 0) return this.insertAtHead(value);
 
-    const prev = this.getByIndex(index - 1);
-    if (prev == null) return null;
+    const prevNode = this.getByIndex(index - 1);
+    if (prevNode == null) return null;
 
-    prev.next = new Node(value, prev.next);
+    prevNode.nextNode = new Node(value, prevNode.nextNode);
     this.length++;
   }
 
   removeHead() {
-    this.head = this.head.next;
+    this.head = this.head.nextNode;
     this.length--;
   }
 
   removeAtIndex(index) {
     if (index === 0) return this.removeHead();
 
-    const prev = this.getByIndex(index - 1);
-    if (prev == null) return null;
+    const prevNode = this.getByIndex(index - 1);
+    if (prevNode == null) return null;
 
-    prev.next = prev.next.next;
+    prevNode.nextNode = prevNode.nextNode.nextNode;
     this.length--;
   }
 
   // print() {
   //   let output = '';
-  //   let current = this.head;
-  //   while (current) {
-  //     output = `${output}${current.value} --> `;
-  //     current = current.next;
+  //   let currentNode = this.head;
+  //   while (currentNode) {
+  //     output = `${output}${currentNode.value} --> `;
+  //     currentNode = currentNode.next;
   //   }
   //   console.log(`${output}null`);
   // }
 }
 
+// helper function to create linked list for ease of testing
 LinkedList.fromValues = function (...values) {
   const ll = new LinkedList();
   for (let i = values.length - 1; i >= 0; i--) {
